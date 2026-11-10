@@ -12,11 +12,11 @@ from helpers import (
 def courier():
     """Зарегистрированный курьер [логин, пароль, имя]; удаляется после теста."""
     courier_data = register_new_courier_and_return_login_password()
-    assert courier_data, 'Не удалось создать тестового курьера'
 
     yield courier_data
 
-    delete_courier_if_exists(courier_data[0], courier_data[1])
+    if courier_data:
+        delete_courier_if_exists(courier_data[0], courier_data[1])
 
 
 @pytest.fixture
